@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     #Local Apps
-    'account'
+    'account',
+    'hotel',
 ]
 
 REST_FRAMEWORK = {
