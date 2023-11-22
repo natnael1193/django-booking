@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     #Local Apps
     'account',
     'hotel',
+    'room_quantity',
 ]
 
 REST_FRAMEWORK = {

@@ -1,29 +1,25 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
-
-from configs.middlewares import user_is_admin_or_super_admin
 from configs.response import getResponse, createResponse, errorResponse, notFoundResponse, updateResponse, \
     deleteResponse
-from hotel.models import Hotel
-from hotel.serializer import HotelSerializer, HotelDetailSerializer
+from room_quantity.models import RoomQuantity
+from room_quantity.seriailizer import RoomQuantitySerializer, RoomQuantityDetailSerializer
 
 
 # Create your views here.
 
-@api_view(["GET", "POST"])
+@api_view(['GET', 'POST'])
 # @authentication_classes([TokenAuthentication])
 # @permission_classes([IsAuthenticated])
 # @user_is_admin_or_super_admin
 def get_or_create(request):
     if request.method == "GET":
-        hotel = Hotel.objects.filter(is_deleted=False).all()
-        serializer = HotelSerializer(hotel, many=True)
+        hotel = RoomQuantity.objects.filter(is_deleted=False).all()
+        serializer = RoomQuantitySerializer(hotel, many=True)
         return getResponse(serializer.data)
 
     if request.method == "POST":
-        serializer = HotelSerializer(data=request.data)
+        serializer = RoomQuantitySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return createResponse(serializer.data)
@@ -36,23 +32,23 @@ def get_or_create(request):
 # @user_is_admin_or_super_admin
 def get_or_update_or_delete(request, pk):
     try:
-        hotel = Hotel.objects.filter(is_deleted=False).get(pk=pk)
+        hotel = RoomQuantity.objects.filter(is_deleted=False).get(pk=pk)
     except:
         return notFoundResponse()
 
     if request.method == "GET":
-        serializer = HotelDetailSerializer(hotel)
+        serializer = RoomQuantityDetailSerializer(hotel)
         return getResponse(serializer.data)
 
     if request.method == "PUT":
-        serializer = HotelSerializer(hotel, data=request.data, partial=True)
+        serializer = RoomQuantitySerializer(hotel, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return updateResponse(serializer.data)
         return errorResponse(serializer.errors)
 
     if request.method == 'DELETE':
-        serializer = HotelSerializer(hotel, data={"is_deleted": True}, partial=True)
+        serializer = RoomQuantitySerializer(hotel, data={"is_deleted": True}, partial=True)
         if serializer.is_valid():
             serializer.save()
             return deleteResponse()
