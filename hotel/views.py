@@ -13,9 +13,9 @@ from hotel.serializer import HotelSerializer, HotelDetailSerializer
 # Create your views here.
 
 @api_view(["GET", "POST"])
-# @authentication_classes([TokenAuthentication])
-# @permission_classes([IsAuthenticated])
-# @user_is_admin_or_super_admin
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+@user_is_admin_or_super_admin
 def get_or_create(request):
     if request.method == "GET":
         hotel = Hotel.objects.filter(is_deleted=False).all()
