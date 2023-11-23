@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'account',
     'hotel',
     'room_quantity',
+    'room_type',
 ]
 
 REST_FRAMEWORK = {
