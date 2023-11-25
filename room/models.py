@@ -14,6 +14,7 @@ class Room(models.Model):
                                null=True)
     description = models.TextField()
     star = models.CharField(max_length=255, blank=True, null=True)
+    price = models.CharField(max_length=255, blank=True, null=True)
     room_type = models.ForeignKey(RoomType, on_delete=models.RESTRICT)
     room_quantity = models.ForeignKey(RoomQuantity, on_delete=models.RESTRICT)
     is_deleted = models.BooleanField(default=False)

@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-r)zao7=a50^bk)0m%vckz(dhkn^^55a#^3j5z1&^twd+iwf*&z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 
 # Application definition
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'room_quantity',
     'room_type',
     'room',
+    'books',
 ]
 
 REST_FRAMEWORK = {
